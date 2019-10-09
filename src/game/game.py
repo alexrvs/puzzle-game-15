@@ -13,7 +13,7 @@ def build_grid(size=DEFAULT_SIZE):
     if not MIN_SIZE <= size <= MAX_SIZE:
         raise GridSizeNotValidException
     grid = np.arange(size ** 2).tolist()
-    grid.append(grid.pop(0))    
+    grid.append(grid.pop(0))
     print(np.array(grid).reshape(size, size))
     return np.array(grid).reshape(size, size)
 
@@ -78,31 +78,31 @@ def is_grid_resolved(grid, started_grid):
     return np.array_equal(grid, started_grid)
 
 
-class ShuffleThread(Thread):
-    def __init__(self, grid):
-        Thread.__init__(self)
-        self.grid = grid
-        self.running = False
+# class ShuffleThread(Thread):
+#     def __init__(self, grid):
+#         Thread.__init__(self)
+#         self.grid = grid
+#         self.running = False
+#
+#     def run(self):
+#         self.running = True
+#         while self.running:
+#             self.grid = move(self.grid, random_move(movable_tiles(self.grid)))
+#
+#     def stop(self):
+#         self.running = False
+#
+#     def result(self):
+#         return self.grid
 
-    def run(self):
-        self.running = True
-        while self.running:
-            self.grid = move(self.grid, random_move(movable_tiles(self.grid)))
 
-    def stop(self):
-        self.running = False
-
-    def result(self):
-        return self.grid
-
-
-def shuffle(grid, timeout=1):
-    shuffle_thread = ShuffleThread(grid.copy())
-    time_thread = Timer(timeout, shuffle_thread.stop)
-
-    shuffle_thread.start()
-    time_thread.start()
-
-    shuffle_thread.join()
-
-    return shuffle_thread.result()
+# def shuffle(grid, timeout=1):
+#     shuffle_thread = ShuffleThread(grid.copy())
+#     time_thread = Timer(timeout, shuffle_thread.stop)
+#
+#     shuffle_thread.start()
+#     time_thread.start()
+#
+#     shuffle_thread.join()
+#
+#     return shuffle_thread.result()

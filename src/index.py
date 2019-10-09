@@ -53,6 +53,7 @@ def play(grid_arg, started_grid_arg):
     return [grid, turn_number]
 
 
+# no need for new version
 def change_size():
     while True:
         try:
@@ -67,6 +68,7 @@ def init():
     print('%s\n\n' % welcome())
     grid = build_grid()
     grid, turn_number = play(grid, grid.copy())
+
     os.system('clear')
     print('\n\n%s' % victory(turn_number))
     print(show_grid(grid))
